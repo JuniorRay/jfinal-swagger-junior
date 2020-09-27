@@ -1,0 +1,7 @@
+target/
+*.iml
+logs/
+thumb/
+/.idea/
+.idea/
+run.pid
