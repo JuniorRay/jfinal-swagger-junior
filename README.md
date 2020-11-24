@@ -43,12 +43,28 @@ Jfinal-Swagger-Plug 配置以及注解说明(更新上传文件)
 然后引入maven：
 ```maven
 <!--jfinal-swagger-->
+<!--jfinal-swagger-->
 <dependency>
     <groupId>cn.junior</groupId>
     <artifactId>jfinal-swagger-junior</artifactId>
     <version>1.1</version>
+    <exclusions>
+        <exclusion>
+              <groupId>com.jfinal</groupId>
+              <artifactId>jfinal</artifactId>
+        </exclusion>
+    </exclusions>
 </dependency>
 ```
+ps:如果maven仓库因迁移至内网失效，请自己行用maven打包成jar
+
+![](image/pack.jpg)
+
+然后项目中单独引入该jar即可
+
+![](image/jar.jpg)
+
+
 2.在JfinalConfig类中配置路由 
 ```java
 /**配置路由*/
@@ -259,7 +275,14 @@ renderJson(json);
 }
 ```
 ###注意事项：
-
+~~~
+Swagger 中 @ApiParam的 paramType（默认值query）的值包括如下5项：
+    header-->请求参数的获取：@RequestHeader()
+    query-->请求参数的获取：@RequestParam() 
+    path-->请求参数的获取：@PathVariable()
+    body-->请求参数的获取：@RequestBody()
+    form（不常用）
+~~~
 1.关于@ApiResponses 注解 如果有返回值一定要设置DTO。这样swagger才能识别到返回的数据格式到doc文档，如果无返回可以省略此注解
 
 2.@Slf4j和@Data 是 lombok的注解，需要idea配置lombok插件，具体插件配置需要请查看：https://www.cnblogs.com/pcheng/p/10945476.html
@@ -302,10 +325,27 @@ renderJson(json);
     <groupId>cn.junior</groupId>
     <artifactId>jfinal-swagger-junior</artifactId>
     <version>1.1</version>
+    <exclusions>
+        <exclusion>
+              <groupId>com.jfinal</groupId>
+              <artifactId>jfinal</artifactId>
+        </exclusion>
+    </exclusions>
 </dependency>
 
 ```
 
 
 ![](image/1.1版本修复文件上传问题.png)
+
+
+3.undertow容器报错 (current frame, stack[1]) is not assignable to 'com/jfinal/handler/Handler'解决方案
+
+![](image/控制台报错解决方案.png)
+
+在undertow启动的时候添加外部类即可
+
+![](image/控制台报错添加class.png)
+
+
 
