@@ -1,11 +1,13 @@
-#Jfinal 的swagger插件
+# Jfinal 的swagger插件
 
 ![](image/swagger-console.png)
 ![](image/swagger-upload.png)
 Jfinal-Swagger-Plug 配置以及注解说明(更新上传文件)
 
- Author :Junior Ray  2020/7/16 
+Author :Junior Ray  2020/7/16 
  
+后续开发计划，即将开发@ApiParam的除了String，int等之外自定义Class类型支持。。。敬请期待~
+
 ###一.使用示例：
 
 1.配置maven仓库和引入公司开发好的：jfinal-swagger-junior-1.0.0.jar 
